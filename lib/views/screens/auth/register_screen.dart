@@ -1,16 +1,34 @@
+import 'dart:typed_data';
+
 import 'package:e_commerce_01/constants.dart';
 import 'package:e_commerce_01/controllers/auth_controller.dart';
 import 'package:e_commerce_01/views/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class RegisterScreen extends StatelessWidget {
-  RegisterScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   final AuthController _authController = AuthController();
+
+  Uint8List? _image;
+
+  selectImage() async {
+    Uint8List image = await _authController.pickImage(ImageSource.gallery);
+    setState(() {
+      _image = image;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +40,32 @@ class RegisterScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Stack(
-              //   children: const [
-              //     CircleAvatar(
-              //       radius: 64,
-              //       backgroundColor: Colors.blue,
-              //       backgroundImage: NetworkImage('profilePic'),
-              //     ),
-              //     Positioned(
-              //       right: 5,
-              //       bottom: 10,
-              //       child: Icon(
-              //         Icons.add_a_photo,
-              //       ),
-              //     ),
-              //   ],
-              // ),
+              Stack(
+                children: [
+                  _image == null
+                      ? const CircleAvatar(
+                          radius: 64,
+                          backgroundColor: Colors.blue,
+                          backgroundImage: NetworkImage(
+                              'https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png'),
+                        )
+                      : CircleAvatar(
+                          radius: 64,
+                          backgroundColor: Colors.blue,
+                          backgroundImage: MemoryImage(_image!),
+                        ),
+                  Positioned(
+                    right: 5,
+                    bottom: 10,
+                    child: InkWell(
+                      onTap: selectImage,
+                      child: const Icon(
+                        Icons.add_a_photo,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(height: 20),
               TextField(
                 controller: _fullNameController,
