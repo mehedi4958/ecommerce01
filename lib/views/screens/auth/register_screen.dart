@@ -1,9 +1,9 @@
 import 'package:e_commerce_01/constants.dart';
-import 'package:e_commerce_01/views/screens/auth/register_screen.dart';
+import 'package:e_commerce_01/views/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +13,28 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const TextField(
+              decoration: InputDecoration(
+                filled: true,
+                hintText: 'Enter your full name',
+                border: OutlineInputBorder(borderSide: BorderSide.none),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+            const TextField(
+              decoration: InputDecoration(
+                filled: true,
+                hintText: 'Enter a username',
+                border: OutlineInputBorder(borderSide: BorderSide.none),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
             const TextField(
               decoration: InputDecoration(
                 filled: true,
@@ -44,10 +66,10 @@ class LoginScreen extends StatelessWidget {
               child: Center(
                 child: InkWell(
                   onTap: () {
-                    print('signed in');
+                    print('signed up');
                   },
                   child: const Text(
-                    'Login',
+                    'Sign Up',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -61,7 +83,7 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'Need an account?',
+                  'Already have an account?',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -74,12 +96,12 @@ class LoginScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const RegisterScreen(),
+                        builder: (context) => const LoginScreen(),
                       ),
                     );
                   },
                   child: Text(
-                    'Sign Up',
+                    'Sign in',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
