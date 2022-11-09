@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
 
 var backgroundColor = Colors.black;
-var buttonColor = Colors.red[400];
+var buttonColor = Colors.black;
+var buttonTextColor = Colors.white;

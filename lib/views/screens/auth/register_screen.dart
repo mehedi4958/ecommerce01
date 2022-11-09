@@ -16,13 +16,13 @@ class RegisterScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Stack(
-                children: [
+                children: const [
                   CircleAvatar(
                     radius: 64,
-                    backgroundColor: Colors.lightBlue[300],
+                    backgroundColor: Colors.blue,
                     backgroundImage: NetworkImage('profilePic'),
                   ),
-                  const Positioned(
+                  Positioned(
                     right: 5,
                     bottom: 10,
                     child: Icon(
@@ -87,12 +87,12 @@ class RegisterScreen extends StatelessWidget {
                     onTap: () {
                       print('signed up');
                     },
-                    child: const Text(
+                    child: Text(
                       'Sign Up',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: buttonTextColor),
                     ),
                   ),
                 ),
@@ -119,12 +119,12 @@ class RegisterScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       'Sign in',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        color: Colors.lightBlue[300],
+                        color: Colors.blue,
                       ),
                     ),
                   ),

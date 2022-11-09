@@ -46,11 +46,12 @@ class LoginScreen extends StatelessWidget {
                   onTap: () {
                     print('signed in');
                   },
-                  child: const Text(
+                  child: Text(
                     'Login',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
+                      color: buttonTextColor,
                     ),
                   ),
                 ),
@@ -78,12 +79,12 @@ class LoginScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'Sign Up',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                      color: Colors.lightBlue[300],
+                      color: Colors.blue,
                     ),
                   ),
                 ),
