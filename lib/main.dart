@@ -1,3 +1,4 @@
+import 'package:e_commerce_01/constants.dart';
 import 'package:e_commerce_01/views/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: backgroundColors,
       ),
       home: const LoginScreen(),
     );
