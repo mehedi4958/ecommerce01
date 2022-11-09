@@ -1,9 +1,16 @@
 import 'package:e_commerce_01/constants.dart';
+import 'package:e_commerce_01/controllers/auth_controller.dart';
 import 'package:e_commerce_01/views/screens/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  RegisterScreen({Key? key}) : super(key: key);
+
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final AuthController _authController = AuthController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +39,9 @@ class RegisterScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: _fullNameController,
+                decoration: const InputDecoration(
                   filled: true,
                   hintText: 'Enter your full name',
                   border: OutlineInputBorder(borderSide: BorderSide.none),
@@ -43,8 +51,9 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 15),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: _userNameController,
+                decoration: const InputDecoration(
                   filled: true,
                   hintText: 'Enter a username',
                   border: OutlineInputBorder(borderSide: BorderSide.none),
@@ -54,8 +63,9 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 15),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: _emailController,
+                decoration: const InputDecoration(
                   filled: true,
                   hintText: 'Enter your email',
                   border: OutlineInputBorder(borderSide: BorderSide.none),
@@ -65,8 +75,9 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 15),
-              const TextField(
-                decoration: InputDecoration(
+              TextField(
+                controller: _passwordController,
+                decoration: const InputDecoration(
                   filled: true,
                   hintText: 'Enter your password',
                   border: OutlineInputBorder(borderSide: BorderSide.none),
@@ -84,8 +95,12 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 child: Center(
                   child: InkWell(
-                    onTap: () {
-                      print('signed up');
+                    onTap: () async {
+                      await _authController.signUpUser(
+                          _fullNameController.text,
+                          _userNameController.text,
+                          _emailController.text,
+                          _passwordController.text);
                     },
                     child: Text(
                       'Sign Up',
