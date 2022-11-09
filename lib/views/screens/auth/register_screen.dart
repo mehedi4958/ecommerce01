@@ -9,109 +9,129 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        alignment: Alignment.center,
         padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const TextField(
-              decoration: InputDecoration(
-                filled: true,
-                hintText: 'Enter your full name',
-                border: OutlineInputBorder(borderSide: BorderSide.none),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
-            ),
-            const SizedBox(height: 15),
-            const TextField(
-              decoration: InputDecoration(
-                filled: true,
-                hintText: 'Enter a username',
-                border: OutlineInputBorder(borderSide: BorderSide.none),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
-            ),
-            const SizedBox(height: 15),
-            const TextField(
-              decoration: InputDecoration(
-                filled: true,
-                hintText: 'Enter your email',
-                border: OutlineInputBorder(borderSide: BorderSide.none),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
-            ),
-            const SizedBox(height: 15),
-            const TextField(
-              decoration: InputDecoration(
-                filled: true,
-                hintText: 'Enter your password',
-                border: OutlineInputBorder(borderSide: BorderSide.none),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              width: MediaQuery.of(context).size.width - 40,
-              height: 50,
-              decoration: BoxDecoration(
-                color: buttonColor,
-              ),
-              child: Center(
-                child: InkWell(
-                  onTap: () {
-                    print('signed up');
-                  },
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 64,
+                    backgroundColor: Colors.lightBlue[300],
+                    backgroundImage: NetworkImage('profilePic'),
+                  ),
+                  const Positioned(
+                    right: 5,
+                    bottom: 10,
+                    child: Icon(
+                      Icons.add_a_photo,
                     ),
                   ),
-                ),
+                ],
               ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Already have an account?',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+              const SizedBox(height: 20),
+              const TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  hintText: 'Enter your full name',
+                  border: OutlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                 ),
-                const SizedBox(
-                  width: 10,
+              ),
+              const SizedBox(height: 15),
+              const TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  hintText: 'Enter a username',
+                  border: OutlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
+              ),
+              const SizedBox(height: 15),
+              const TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  hintText: 'Enter your email',
+                  border: OutlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              const TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  hintText: 'Enter your password',
+                  border: OutlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                width: MediaQuery.of(context).size.width - 40,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: buttonColor,
+                ),
+                child: Center(
+                  child: InkWell(
+                    onTap: () {
+                      print('signed up');
+                    },
+                    child: const Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
-                    );
-                  },
-                  child: Text(
-                    'Sign in',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.lightBlue[300],
                     ),
                   ),
                 ),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Already have an account?',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Sign in',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.lightBlue[300],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
