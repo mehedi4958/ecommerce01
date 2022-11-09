@@ -11,8 +11,16 @@ class AuthController {
           username.isNotEmpty &&
           email.isNotEmpty &&
           password.isNotEmpty) {
-        UserCredential userCredential = await firebaseAuth
-            .createUserWithEmailAndPassword(email: email, password: password);
+        UserCredential userCredential =
+            await firebaseAuth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        fireStore.collection('users').doc(userCredential.user!.uid).set({
+          'fullName': fullName,
+          'username': username,
+          'email': email,
+        });
         print(userCredential.user!.email);
         result = 'success';
       } else {

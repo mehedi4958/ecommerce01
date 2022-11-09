@@ -22,22 +22,22 @@ class RegisterScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Stack(
-                children: const [
-                  CircleAvatar(
-                    radius: 64,
-                    backgroundColor: Colors.blue,
-                    backgroundImage: NetworkImage('profilePic'),
-                  ),
-                  Positioned(
-                    right: 5,
-                    bottom: 10,
-                    child: Icon(
-                      Icons.add_a_photo,
-                    ),
-                  ),
-                ],
-              ),
+              // Stack(
+              //   children: const [
+              //     CircleAvatar(
+              //       radius: 64,
+              //       backgroundColor: Colors.blue,
+              //       backgroundImage: NetworkImage('profilePic'),
+              //     ),
+              //     Positioned(
+              //       right: 5,
+              //       bottom: 10,
+              //       child: Icon(
+              //         Icons.add_a_photo,
+              //       ),
+              //     ),
+              //   ],
+              // ),
               const SizedBox(height: 20),
               TextField(
                 controller: _fullNameController,
