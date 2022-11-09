@@ -128,7 +128,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           _fullNameController.text,
                           _userNameController.text,
                           _emailController.text,
-                          _passwordController.text);
+                          _passwordController.text,
+                          _image);
                     },
                     child: Text(
                       'Sign Up',
