@@ -22,6 +22,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final AuthController _authController = AuthController();
 
   Uint8List? _image;
+  bool _isLoading = false;
 
   selectImage() async {
     Uint8List image = await _authController.pickImage(ImageSource.gallery);
@@ -31,6 +32,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   signUpUser() async {
+    setState(() {
+      _isLoading = true;
+    });
     String result = await _authController.signUpUser(
       _fullNameController.text,
       _userNameController.text,
@@ -38,6 +42,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _passwordController.text,
       _image,
     );
+
+    setState(() {
+      _isLoading = false;
+    });
 
     if (result != 'success') {
       return showSnackBar(context, result);
@@ -141,13 +149,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Center(
                   child: InkWell(
                     onTap: signUpUser,
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: buttonTextColor),
-                    ),
+                    child: _isLoading
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          )
+                        : Text(
+                            'Sign Up',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: buttonTextColor),
+                          ),
                   ),
                 ),
               ),
