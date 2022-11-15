@@ -61,7 +61,6 @@ class AuthController {
           'email': email,
           'image': profileImageUrl,
         });
-        print(userCredential.user!.email);
         result = 'success';
       } else {
         result = 'Fields must not be empty';

@@ -12,3 +12,12 @@ var buttonTextColor = Colors.white;
 var firebaseAuth = FirebaseAuth.instance;
 var fireStore = FirebaseFirestore.instance;
 var firebaseStorage = FirebaseStorage.instance;
+
+///SnackBar
+showSnackBar(BuildContext context, String content) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(content),
+    ),
+  );
+}

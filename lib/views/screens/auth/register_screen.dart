@@ -30,6 +30,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
   }
 
+  signUpUser() async {
+    String result = await _authController.signUpUser(
+      _fullNameController.text,
+      _userNameController.text,
+      _emailController.text,
+      _passwordController.text,
+      _image,
+    );
+
+    if (result != 'success') {
+      return showSnackBar(context, result);
+    } else {
+      return showSnackBar(
+          context, 'Congratulations! Your account has been created.');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,14 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 child: Center(
                   child: InkWell(
-                    onTap: () async {
-                      await _authController.signUpUser(
-                          _fullNameController.text,
-                          _userNameController.text,
-                          _emailController.text,
-                          _passwordController.text,
-                          _image);
-                    },
+                    onTap: signUpUser,
                     child: Text(
                       'Sign Up',
                       style: TextStyle(
