@@ -70,4 +70,22 @@ class AuthController {
     }
     return result;
   }
+
+  ///function to login users
+
+  loginUser(String email, String password) async {
+    String result = 'some error occurred';
+    try {
+      if (email.isNotEmpty && password.isNotEmpty) {
+        await firebaseAuth.signInWithEmailAndPassword(
+            email: email, password: password);
+        result = 'success';
+      } else {
+        result = 'Fields must not be empty';
+      }
+    } catch (e) {
+      result = e.toString();
+    }
+    return result;
+  }
 }

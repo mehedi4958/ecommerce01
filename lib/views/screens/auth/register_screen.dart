@@ -154,6 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       _userNameController.clear();
                       _emailController.clear();
                       _passwordController.clear();
+                      _image!.clear();
                     },
                     child: _isLoading
                         ? const Center(
