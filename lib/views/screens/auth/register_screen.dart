@@ -148,7 +148,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 child: Center(
                   child: InkWell(
-                    onTap: signUpUser,
+                    onTap: () {
+                      signUpUser();
+                      _fullNameController.clear();
+                      _userNameController.clear();
+                      _emailController.clear();
+                      _passwordController.clear();
+                    },
                     child: _isLoading
                         ? const Center(
                             child: CircularProgressIndicator(
