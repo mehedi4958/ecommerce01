@@ -54,6 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 15),
             TextField(
               controller: _passwordController,
+              obscureText: true,
               decoration: const InputDecoration(
                 filled: true,
                 hintText: 'Enter your password',
@@ -72,7 +73,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: Center(
                 child: InkWell(
-                  onTap: loginUser,
+                  onTap: () {
+                    loginUser();
+                    _emailController.clear();
+                    _passwordController.clear();
+                  },
                   child: _isLoading
                       ? const Center(
                           child: CircularProgressIndicator(
