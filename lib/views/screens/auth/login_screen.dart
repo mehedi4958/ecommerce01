@@ -1,9 +1,36 @@
 import 'package:e_commerce_01/constants.dart';
+import 'package:e_commerce_01/controllers/auth_controller.dart';
 import 'package:e_commerce_01/views/screens/auth/register_screen.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  bool _isLoading = false;
+
+  loginUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String result = await AuthController()
+        .loginUser(_emailController.text, _passwordController.text);
+    setState(() {
+      _isLoading = false;
+    });
+    if (result != 'success') {
+      return showSnackBar(context, result);
+    } else {
+      //Do nothing for now
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +40,9 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: _emailController,
+              decoration: const InputDecoration(
                 filled: true,
                 hintText: 'Enter your email',
                 border: OutlineInputBorder(borderSide: BorderSide.none),
@@ -24,8 +52,9 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 15),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: _passwordController,
+              decoration: const InputDecoration(
                 filled: true,
                 hintText: 'Enter your password',
                 border: OutlineInputBorder(borderSide: BorderSide.none),
@@ -43,17 +72,21 @@ class LoginScreen extends StatelessWidget {
               ),
               child: Center(
                 child: InkWell(
-                  onTap: () {
-                    print('signed in');
-                  },
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: buttonTextColor,
-                    ),
-                  ),
+                  onTap: loginUser,
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        )
+                      : Text(
+                          'Login',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: buttonTextColor,
+                          ),
+                        ),
                 ),
               ),
             ),

@@ -79,6 +79,7 @@ class AuthController {
       if (email.isNotEmpty && password.isNotEmpty) {
         await firebaseAuth.signInWithEmailAndPassword(
             email: email, password: password);
+        print('User logged in');
         result = 'success';
       } else {
         result = 'Fields must not be empty';
