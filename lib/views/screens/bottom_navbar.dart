@@ -15,6 +15,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: pages[pageIndex],
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: backgroundColor,
         activeColor: Colors.white,
@@ -27,47 +28,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 30,
-            ),
-            label: 'Home',
-          ),
+              icon: Icon(Icons.home, size: 30), label: 'Home'),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.rss_feed,
-              size: 30,
-            ),
-            label: 'Feeds',
-          ),
+              icon: Icon(Icons.rss_feed, size: 30), label: 'Feeds'),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              size: 30,
-            ),
-            label: 'Search',
-          ),
+              icon: Icon(Icons.search, size: 30), label: 'Search'),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_bag,
-              size: 30,
-            ),
-            label: 'Cart',
-          ),
+              icon: Icon(Icons.shopping_bag, size: 30), label: 'Cart'),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.upload,
-              size: 30,
-            ),
-            label: 'Upload',
-          ),
+              icon: Icon(Icons.upload, size: 30), label: 'Upload'),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              size: 30,
-            ),
-            label: 'Profile',
-          ),
+              icon: Icon(Icons.person, size: 30), label: 'Profile'),
         ],
       ),
     );
