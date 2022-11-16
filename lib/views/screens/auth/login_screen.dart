@@ -1,6 +1,7 @@
 import 'package:e_commerce_01/constants.dart';
 import 'package:e_commerce_01/controllers/auth_controller.dart';
 import 'package:e_commerce_01/views/screens/auth/register_screen.dart';
+import 'package:e_commerce_01/views/screens/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -28,7 +29,13 @@ class _LoginScreenState extends State<LoginScreen> {
     if (result != 'success') {
       return showSnackBar(context, result);
     } else {
-      //Do nothing for now
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => const BottomNavBar(),
+        ),
+      );
+      _emailController.clear();
+      _passwordController.clear();
     }
   }
 
@@ -73,11 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: Center(
                 child: InkWell(
-                  onTap: () {
-                    loginUser();
-                    _emailController.clear();
-                    _passwordController.clear();
-                  },
+                  onTap: loginUser,
                   child: _isLoading
                       ? const Center(
                           child: CircularProgressIndicator(
