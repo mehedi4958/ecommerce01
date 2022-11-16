@@ -1,15 +1,32 @@
+import 'package:e_commerce_01/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class BottomNavBar extends StatelessWidget {
+class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
+
+  @override
+  State<BottomNavBar> createState() => _BottomNavBarState();
+}
+
+class _BottomNavBarState extends State<BottomNavBar> {
+  int pageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CupertinoTabBar(
+        backgroundColor: backgroundColor,
+        activeColor: Colors.white,
+        // inactiveColor: Colors.white,
+        currentIndex: pageIndex,
+        onTap: (index) {
+          setState(() {
+            pageIndex = index;
+          });
+        },
         items: const [
           BottomNavigationBarItem(
-            backgroundColor: Colors.black,
             icon: Icon(
               Icons.home,
               size: 30,
