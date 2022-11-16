@@ -50,11 +50,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (result != 'success') {
       return showSnackBar(context, result);
     } else {
-      _fullNameController.clear();
-      _userNameController.clear();
-      _emailController.clear();
-      _passwordController.clear();
-      _image!.clear();
       return showSnackBar(
           context, 'Congratulations! Your account has been created.');
     }
@@ -154,7 +149,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 child: Center(
                   child: InkWell(
-                    onTap: signUpUser,
+                    onTap: () async {
+                      await signUpUser();
+                      _fullNameController.clear();
+                      _userNameController.clear();
+                      _emailController.clear();
+                      _passwordController.clear();
+                      _image!.clear();
+                    },
                     child: _isLoading
                         ? const Center(
                             child: CircularProgressIndicator(
