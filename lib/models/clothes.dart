@@ -17,6 +17,11 @@ class Clothes {
         '\$80.99',
         'assets/images/arrival2.png',
       ),
+      Clothes(
+        'Gucci oversize',
+        '\$70.99',
+        'assets/images/arrival1.png',
+      ),
     ];
   }
 }

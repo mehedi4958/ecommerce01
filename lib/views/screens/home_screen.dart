@@ -1,7 +1,6 @@
-import 'package:e_commerce_01/models/clothes.dart';
+import 'package:e_commerce_01/views/widgets/all_products.dart';
 import 'package:e_commerce_01/views/widgets/category_list.dart';
 import 'package:e_commerce_01/views/widgets/custom_app_bar.dart';
-import 'package:e_commerce_01/views/widgets/products.dart';
 import 'package:e_commerce_01/views/widgets/search_input.dart';
 import 'package:e_commerce_01/views/widgets/tag_list.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +18,7 @@ class HomeScreen extends StatelessWidget {
           const SearchInput(),
           const TagList(),
           const CategoryList(),
-          ProductItem(
-            clothes: Clothes(
-              'Gucci oversize',
-              '\$70.99',
-              'assets/images/arrival1.png',
-            ),
-          )
+          AllProducts(),
         ],
       ),
     );
