@@ -6,7 +6,11 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 30, left: 30),
+      padding: const EdgeInsets.only(
+        top: 30,
+        left: 30,
+        right: 25,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -31,7 +35,19 @@ class CustomAppBar extends StatelessWidget {
           Stack(
             children: [
               Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 0.1,
+                      blurRadius: 0.1,
+                      offset: const Offset(0, 1),
+                    ),
+                  ],
+                ),
                 child: const Icon(
                   Icons.shopping_cart_outlined,
                   color: Colors.grey,
