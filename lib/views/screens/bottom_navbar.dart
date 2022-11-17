@@ -18,7 +18,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       body: pages[pageIndex],
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: backgroundColor,
-        activeColor: Colors.white,
+        activeColor: buttonTextColor,
         // inactiveColor: Colors.white,
         currentIndex: pageIndex,
         onTap: (index) {
