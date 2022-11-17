@@ -9,6 +9,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.all(10),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -31,7 +32,37 @@ class ProductItem extends StatelessWidget {
                     ),
                   ),
                 ),
+                Positioned(
+                  right: 20,
+                  top: 15,
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                      size: 15,
+                    ),
+                  ),
+                ),
               ],
+            ),
+            Text(
+              clothes.productName.toString(),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                height: 1.6,
+              ),
+            ),
+            Text(
+              clothes.price.toString(),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                height: 1.6,
+              ),
             ),
           ],
         ),
