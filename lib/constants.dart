@@ -37,3 +37,10 @@ List pages = [
   const UploadScreen(),
   const ProfileScreen(),
 ];
+
+///Tag List
+const tagList = [
+  'Woman',
+  'T-shirt',
+  'Dress',
+];

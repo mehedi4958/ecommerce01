@@ -31,6 +31,18 @@ class SearchInput extends StatelessWidget {
               ),
             ),
           ),
+          Container(
+            margin: const EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Image.asset(
+              'assets/icons/filter.png',
+              width: 25,
+            ),
+          ),
         ],
       ),
     );
