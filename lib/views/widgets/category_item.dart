@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
-  CategoryItem({Key? key}) : super(key: key);
+  CategoryItem({Key? key, required this.index}) : super(key: key);
 
-  List<Map<String, Object>> categories = [
+  final int index;
+  final List<Map<String, Object>> categories = [
     {
       'categoryName': 'Phones',
       'categoryImage': 'assets/images/CatPhones.png',
@@ -28,6 +29,36 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Stack(
+      children: [
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 10),
+          width: 150,
+          height: 150,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+              image: AssetImage(
+                '${categories[index]['categoryImage']}',
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          right: 10,
+          left: 10,
+          child: Container(
+            child: Text(
+              '${categories[index]['categoryName']}',
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
