@@ -2,7 +2,18 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 class FeedsProducts extends StatefulWidget {
-  const FeedsProducts({Key? key}) : super(key: key);
+  const FeedsProducts({
+    Key? key,
+    required this.id,
+    required this.title,
+    required this.price,
+    required this.imageUrl,
+  }) : super(key: key);
+
+  final String id;
+  final String title;
+  final double price;
+  final String imageUrl;
 
   @override
   State<FeedsProducts> createState() => _FeedsProductsState();
@@ -27,9 +38,9 @@ class _FeedsProductsState extends State<FeedsProducts> {
                   width: 200,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    image: const DecorationImage(
+                    image: DecorationImage(
                       image: AssetImage(
-                        'assets/images/arrival1.png',
+                        widget.imageUrl,
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -57,16 +68,16 @@ class _FeedsProductsState extends State<FeedsProducts> {
                 ),
               ],
             ),
-            const Text(
-              'Gucci Over Sized',
-              style: TextStyle(
+            Text(
+              widget.title,
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 height: 1.6,
               ),
             ),
-            const Text(
-              '\$80.99',
-              style: TextStyle(
+            Text(
+              '\$${widget.price.toStringAsFixed(2)}',
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 height: 1.6,
               ),
