@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:e_commerce_01/models/clothes.dart';
 import 'package:e_commerce_01/views/screens/detail/detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -44,18 +45,18 @@ class ProductItem extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    right: 20,
+                    left: 5,
                     top: 15,
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                        size: 15,
+                    child: Badge(
+                      toAnimate: false,
+                      shape: BadgeShape.square,
+                      badgeColor: Colors.pink,
+                      borderRadius: BorderRadius.circular(8),
+                      badgeContent: const Text(
+                        'New',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

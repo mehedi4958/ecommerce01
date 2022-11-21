@@ -7,6 +7,17 @@ class FeedsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'Feeds',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+      ),
       body: GridView.count(
         crossAxisCount: 2,
         crossAxisSpacing: 8,

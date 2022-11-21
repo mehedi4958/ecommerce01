@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 class FeedsProducts extends StatefulWidget {
@@ -11,7 +12,7 @@ class _FeedsProductsState extends State<FeedsProducts> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(left: 5, right: 5),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -37,16 +38,20 @@ class _FeedsProductsState extends State<FeedsProducts> {
                 Positioned(
                   right: 20,
                   top: 15,
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                      size: 15,
+                  child: Positioned(
+                    left: 5,
+                    top: 15,
+                    child: Badge(
+                      toAnimate: true,
+                      shape: BadgeShape.square,
+                      badgeColor: Colors.pink,
+                      borderRadius: BorderRadius.circular(8),
+                      badgeContent: const Text(
+                        'New',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                 ),
