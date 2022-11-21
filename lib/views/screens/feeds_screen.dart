@@ -1,3 +1,4 @@
+import 'package:e_commerce_01/views/widgets/feeds_products.dart';
 import 'package:flutter/material.dart';
 
 class FeedsScreen extends StatelessWidget {
@@ -5,9 +6,15 @@ class FeedsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Feed'),
+    return Scaffold(
+      body: GridView.count(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8,
+        childAspectRatio: 240 / 320,
+        children: List.generate(
+          50,
+          (index) => const FeedsProducts(),
+        ),
       ),
     );
   }
