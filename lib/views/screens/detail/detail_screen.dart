@@ -33,9 +33,9 @@ class DetailScreen extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.5),
+                      color: Colors.white.withOpacity(0.9),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -46,6 +46,31 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 25,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  clothes.productName.toString(),
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Container(
+                  child: const Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                    size: 15,
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),
