@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             const CustomAppBar(),
             const SearchInput(),
+            const TagList(),
             const Category(),
             const CategoryList(),
             AllProducts(),
