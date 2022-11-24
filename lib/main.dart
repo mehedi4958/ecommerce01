@@ -1,10 +1,12 @@
 import 'package:e_commerce_01/firebase_options.dart';
+import 'package:e_commerce_01/provider/products.dart';
 import 'package:e_commerce_01/views/screens/auth/login_screen.dart';
 import 'package:e_commerce_01/views/screens/bottom_navbar.dart';
 import 'package:e_commerce_01/views/screens/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,13 +25,18 @@ class MyApp extends StatelessWidget {
         statusBarColor: Colors.transparent,
       ),
     );
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      // theme: ThemeData.dark().copyWith(
-      //   scaffoldBackgroundColor: backgroundColor,
-      // ),
-      home: BottomNavBar(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Products()),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        // theme: ThemeData.dark().copyWith(
+        //   scaffoldBackgroundColor: backgroundColor,
+        // ),
+        home: BottomNavBar(),
+      ),
     );
   }
 }

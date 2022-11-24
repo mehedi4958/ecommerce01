@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class FeedsScreen extends StatelessWidget {
   FeedsScreen({Key? key}) : super(key: key);
 
-  List<Product> _products = [
+  final List<Product> _products = [
     Product(
       id: 'Gucci Over Sized',
       title: 'Gucci Over Sized',
