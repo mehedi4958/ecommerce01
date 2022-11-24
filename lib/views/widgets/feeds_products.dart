@@ -47,21 +47,17 @@ class _FeedsProductsState extends State<FeedsProducts> {
                   ),
                 ),
                 Positioned(
-                  right: 20,
+                  left: 5,
                   top: 15,
-                  child: Positioned(
-                    left: 5,
-                    top: 15,
-                    child: Badge(
-                      toAnimate: true,
-                      shape: BadgeShape.square,
-                      badgeColor: Colors.pink,
-                      borderRadius: BorderRadius.circular(8),
-                      badgeContent: const Text(
-                        'New',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
+                  child: Badge(
+                    toAnimate: true,
+                    shape: BadgeShape.square,
+                    badgeColor: Colors.pink,
+                    borderRadius: BorderRadius.circular(8),
+                    badgeContent: const Text(
+                      'New',
+                      style: TextStyle(
+                        color: Colors.white,
                       ),
                     ),
                   ),
