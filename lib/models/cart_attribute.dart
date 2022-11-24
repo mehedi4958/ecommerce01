@@ -1,4 +1,6 @@
-class CartAttribute {
+import 'package:flutter/material.dart';
+
+class CartAttribute with ChangeNotifier {
   CartAttribute({
     required this.id,
     required this.title,
@@ -9,7 +11,7 @@ class CartAttribute {
 
   final String id;
   final String title;
-  final String quantity;
+  final int quantity;
   final double price;
   final String imageUrl;
 }
