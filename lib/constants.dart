@@ -31,7 +31,7 @@ showSnackBar(BuildContext context, String content) {
 ///Pages
 List pages = [
   const HomeScreen(),
-  FeedsScreen(),
+  const FeedsScreen(),
   const SearchScreen(),
   const CartScreen(),
   const UploadScreen(),
