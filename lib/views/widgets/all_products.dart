@@ -18,6 +18,7 @@ class AllProducts extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => ProductItem(
                 clothes: clotheList[index],
+                index: index,
               ),
               separatorBuilder: (_, index) => const SizedBox(
                 width: 5,

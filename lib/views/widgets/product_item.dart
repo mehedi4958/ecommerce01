@@ -1,15 +1,23 @@
 import 'package:badges/badges.dart';
 import 'package:e_commerce_01/models/clothes.dart';
+import 'package:e_commerce_01/models/products.dart';
+import 'package:e_commerce_01/provider/products.dart';
 import 'package:e_commerce_01/views/screens/detail/detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({Key? key, required this.clothes}) : super(key: key);
+  const ProductItem({Key? key, required this.clothes, required this.index})
+      : super(key: key);
 
   final Clothes clothes;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final productsProvider = Provider.of<Products>(context);
+    List<Product> productList = productsProvider.products;
+
     return Container(
       margin: const EdgeInsets.all(10),
       child: GestureDetector(
@@ -38,7 +46,7 @@ class ProductItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
                         image: AssetImage(
-                          clothes.imageUrl.toString(),
+                          productList[index].imageUrl.toString(),
                         ),
                         fit: BoxFit.cover,
                       ),
@@ -63,14 +71,14 @@ class ProductItem extends StatelessWidget {
                 ],
               ),
               Text(
-                clothes.productName.toString(),
+                productList[index].title,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   height: 1.6,
                 ),
               ),
               Text(
-                clothes.price.toString(),
+                '\$${productList[index].price.toString()}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   height: 1.6,
