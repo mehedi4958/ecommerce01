@@ -30,12 +30,8 @@ class FeedsScreen extends StatelessWidget {
         childAspectRatio: 240 / 320,
         children: List.generate(
           productList.length,
-          (index) => FeedsProducts(
-            id: productList[index].id,
-            title: productList[index].title,
-            price: productList[index].price,
-            imageUrl: productList[index].imageUrl,
-          ),
+          (index) => ChangeNotifierProvider.value(
+              value: productList[index], child: const FeedsProducts()),
         ),
       ),
     );

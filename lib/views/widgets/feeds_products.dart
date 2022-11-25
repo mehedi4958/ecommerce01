@@ -1,19 +1,10 @@
 import 'package:badges/badges.dart';
+import 'package:e_commerce_01/models/products.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FeedsProducts extends StatefulWidget {
-  const FeedsProducts({
-    Key? key,
-    required this.id,
-    required this.title,
-    required this.price,
-    required this.imageUrl,
-  }) : super(key: key);
-
-  final String id;
-  final String title;
-  final double price;
-  final String imageUrl;
+  const FeedsProducts({Key? key}) : super(key: key);
 
   @override
   State<FeedsProducts> createState() => _FeedsProductsState();
@@ -22,6 +13,8 @@ class FeedsProducts extends StatefulWidget {
 class _FeedsProductsState extends State<FeedsProducts> {
   @override
   Widget build(BuildContext context) {
+    final products = Provider.of<Product>(context);
+
     return Container(
       margin: const EdgeInsets.only(left: 5, right: 5),
       child: Card(
@@ -40,7 +33,7 @@ class _FeedsProductsState extends State<FeedsProducts> {
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
                       image: AssetImage(
-                        widget.imageUrl,
+                        products.imageUrl,
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -65,14 +58,14 @@ class _FeedsProductsState extends State<FeedsProducts> {
               ],
             ),
             Text(
-              widget.title,
+              products.title,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 height: 1.6,
               ),
             ),
             Text(
-              '\$${widget.price.toStringAsFixed(2)}',
+              '\$${products.price.toStringAsFixed(2)}',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 height: 1.6,
