@@ -39,7 +39,9 @@ class CartScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return ChangeNotifierProvider.value(
             value: cartProvider.getCartItems.values.toList()[index],
-            child: const CartItem(),
+            child: CartItem(
+              productId: cartProvider.getCartItems.keys.toList()[index],
+            ),
           );
         },
       ),
