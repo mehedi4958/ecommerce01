@@ -12,80 +12,84 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: Text(
-          'Cart (${cartProvider.getCartItems.length})',
-          style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              cartProvider.clearCartData();
-            },
-            icon: const Icon(
-              CupertinoIcons.trash,
-              color: Colors.red,
+    return cartProvider.getCartItems.isNotEmpty
+        ? Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.white,
+              title: Text(
+                'Cart (${cartProvider.getCartItems.length})',
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    cartProvider.clearCartData();
+                  },
+                  icon: const Icon(
+                    CupertinoIcons.trash,
+                    color: Colors.red,
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-      body: ListView.builder(
-        itemCount: cartProvider.getCartItems.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ChangeNotifierProvider.value(
-            value: cartProvider.getCartItems.values.toList()[index],
-            child: CartItem(
-              productId: cartProvider.getCartItems.keys.toList()[index],
+            body: ListView.builder(
+              itemCount: cartProvider.getCartItems.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ChangeNotifierProvider.value(
+                  value: cartProvider.getCartItems.values.toList()[index],
+                  child: CartItem(
+                    productId: cartProvider.getCartItems.keys.toList()[index],
+                  ),
+                );
+              },
             ),
+            bottomSheet: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        'Checkout',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  const Text(
+                    'Total:',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    '\$${cartProvider.totalAmount.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        : const Scaffold(
+            body: CartEmpty(),
           );
-        },
-      ),
-      bottomSheet: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Row(
-          children: [
-            Expanded(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {},
-                child: const Text(
-                  'Checkout',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ),
-            const Spacer(),
-            const Text(
-              'Total',
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(width: 5),
-            const Text(
-              'USD',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }
