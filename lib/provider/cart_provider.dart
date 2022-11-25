@@ -15,4 +15,18 @@ class CartProvider with ChangeNotifier {
     });
     return total;
   }
+
+  void addToCart(
+      String productId, double price, String title, String imageUrl) {
+    if (_cartItems.containsKey(productId)) {
+      _cartItems.update(
+          productId,
+          (existingCartItem) => CartAttribute(
+              id: existingCartItem.id,
+              title: existingCartItem.title,
+              quantity: existingCartItem.quantity + 1,
+              price: existingCartItem.price,
+              imageUrl: existingCartItem.imageUrl));
+    }
+  }
 }
