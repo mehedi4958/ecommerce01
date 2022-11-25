@@ -130,21 +130,29 @@ class DetailScreen extends StatelessWidget {
                           ),
                           backgroundColor: Colors.black,
                         ),
-                        onPressed: () {
-                          cartProvider.addToCart(productId, productAttr.price,
-                              productAttr.title, productAttr.imageUrl);
-                        },
+                        onPressed:
+                            cartProvider.getCartItems.containsKey(productId)
+                                ? null
+                                : () {
+                                    cartProvider.addToCart(
+                                        productId,
+                                        productAttr.price,
+                                        productAttr.title,
+                                        productAttr.imageUrl);
+                                  },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Text(
-                              'Add to Cart',
-                              style: TextStyle(fontSize: 22),
+                              cartProvider.getCartItems.containsKey(productId)
+                                  ? 'Already In Cart'
+                                  : 'Add to Cart',
+                              style: const TextStyle(fontSize: 22),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
-                            Icon(Icons.shopping_cart_outlined),
+                            const Icon(Icons.shopping_cart_outlined),
                           ],
                         ),
                       ),

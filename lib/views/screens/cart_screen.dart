@@ -26,10 +26,12 @@ class CartScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              cartProvider.clearCartData();
+            },
             icon: const Icon(
               CupertinoIcons.trash,
-              color: Colors.black,
+              color: Colors.red,
             ),
           ),
         ],

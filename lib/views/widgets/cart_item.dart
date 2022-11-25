@@ -14,6 +14,9 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartAttr = Provider.of<CartAttribute>(context);
     final cartProvider = Provider.of<CartProvider>(context);
+
+    double subtotal = cartAttr.price * cartAttr.quantity;
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, DetailScreen.id, arguments: productId);
@@ -52,7 +55,9 @@ class CartItem extends StatelessWidget {
                               fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            cartProvider.removeCartItem(productId);
+                          },
                           icon: const Icon(
                             CupertinoIcons.delete_left,
                             color: Colors.red,
@@ -82,18 +87,18 @@ class CartItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Row(
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         'Subtotal',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Text(
-                        '\$1000',
-                        style: TextStyle(
+                        '\$${subtotal.toStringAsFixed(2)}',
+                        style: const TextStyle(
                           fontSize: 16,
                           color: Colors.pink,
                         ),
