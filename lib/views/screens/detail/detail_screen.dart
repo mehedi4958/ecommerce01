@@ -1,13 +1,17 @@
-import 'package:e_commerce_01/models/clothes.dart';
+import 'package:e_commerce_01/provider/products.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key, required this.clothes}) : super(key: key);
-
-  final Clothes clothes;
+  const DetailScreen({Key? key}) : super(key: key);
+  static const String id = 'detailScreen';
 
   @override
   Widget build(BuildContext context) {
+    final productData = Provider.of<Products>(context);
+    final productId = ModalRoute.of(context)!.settings.arguments as String;
+    final productAttr = productData.findById(productId);
+
     return Scaffold(
       body: Column(
         children: [
@@ -18,7 +22,7 @@ class DetailScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(
-                      clothes.imageUrl.toString(),
+                      productAttr.imageUrl,
                     ),
                     fit: BoxFit.fitHeight,
                   ),
@@ -56,19 +60,17 @@ class DetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  clothes.productName.toString(),
+                  productAttr.title,
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Container(
-                  child: const Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                    size: 15,
-                  ),
-                )
+                const Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                  size: 15,
+                ),
               ],
             ),
           ),

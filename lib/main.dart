@@ -1,6 +1,7 @@
 import 'package:e_commerce_01/firebase_options.dart';
 import 'package:e_commerce_01/provider/products.dart';
 import 'package:e_commerce_01/views/screens/bottom_navbar.dart';
+import 'package:e_commerce_01/views/screens/detail/detail_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,13 +28,16 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => Products()),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         // theme: ThemeData.dark().copyWith(
         //   scaffoldBackgroundColor: backgroundColor,
         // ),
-        home: BottomNavBar(),
+        home: const BottomNavBar(),
+        routes: {
+          DetailScreen.id: (context) => const DetailScreen(),
+        },
       ),
     );
   }
