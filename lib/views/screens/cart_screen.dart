@@ -1,24 +1,27 @@
+import 'package:e_commerce_01/provider/cart_provider.dart';
 import 'package:e_commerce_01/views/widgets/cart_empty.dart';
 import 'package:e_commerce_01/views/widgets/cart_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        centerTitle: false,
-        title: const Text(
-          'Cart',
-          style: TextStyle(
+        title: Text(
+          'Cart (${cartProvider.getCartItems.length})',
+          style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 25,
+            fontSize: 24,
           ),
         ),
         actions: [
@@ -32,9 +35,12 @@ class CartScreen extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: 3,
+        itemCount: cartProvider.getCartItems.length,
         itemBuilder: (BuildContext context, int index) {
-          return const CartItem();
+          return ChangeNotifierProvider.value(
+            value: cartProvider.getCartItems.values.toList()[index],
+            child: const CartItem(),
+          );
         },
       ),
       bottomSheet: Padding(

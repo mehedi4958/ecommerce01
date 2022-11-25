@@ -1,11 +1,14 @@
+import 'package:e_commerce_01/models/cart_attribute.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final cartAttr = Provider.of<CartAttribute>(context);
     return Container(
       margin: const EdgeInsets.all(10),
       height: 160,
@@ -17,9 +20,9 @@ class CartItem extends StatelessWidget {
         children: [
           Container(
             width: 130,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/images/arrival2.png'),
+                image: AssetImage(cartAttr.imageUrl),
                 fit: BoxFit.cover,
               ),
             ),
@@ -34,9 +37,9 @@ class CartItem extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Product Name',
-                        style: TextStyle(
+                      Text(
+                        cartAttr.title,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w500),
                       ),
                       IconButton(
@@ -50,18 +53,18 @@ class CartItem extends StatelessWidget {
                   ),
                 ),
                 Row(
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Price',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Text(
-                      '\$600',
-                      style: TextStyle(
+                      '\$${cartAttr.price}',
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
@@ -112,10 +115,10 @@ class CartItem extends StatelessWidget {
                         decoration: const BoxDecoration(
                           color: Colors.white,
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
-                            '1',
-                            style: TextStyle(
+                            '${cartAttr.quantity}',
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
