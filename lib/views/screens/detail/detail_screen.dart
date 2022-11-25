@@ -1,3 +1,4 @@
+import 'package:e_commerce_01/provider/cart_provider.dart';
 import 'package:e_commerce_01/provider/products.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productData = Provider.of<Products>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
     final productId = ModalRoute.of(context)!.settings.arguments as String;
     final productAttr = productData.findById(productId);
 
@@ -118,7 +120,7 @@ class DetailScreen extends StatelessWidget {
                     width: 15,
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -128,7 +130,10 @@ class DetailScreen extends StatelessWidget {
                           ),
                           backgroundColor: Colors.black,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          cartProvider.addToCart(productId, productAttr.price,
+                              productAttr.title, productAttr.imageUrl);
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [

@@ -20,13 +20,25 @@ class CartProvider with ChangeNotifier {
       String productId, double price, String title, String imageUrl) {
     if (_cartItems.containsKey(productId)) {
       _cartItems.update(
-          productId,
-          (existingCartItem) => CartAttribute(
-              id: existingCartItem.id,
-              title: existingCartItem.title,
-              quantity: existingCartItem.quantity + 1,
-              price: existingCartItem.price,
-              imageUrl: existingCartItem.imageUrl));
+        productId,
+        (existingCartItem) => CartAttribute(
+            id: existingCartItem.id,
+            title: existingCartItem.title,
+            quantity: existingCartItem.quantity + 1,
+            price: existingCartItem.price,
+            imageUrl: existingCartItem.imageUrl),
+      );
+    } else {
+      _cartItems.putIfAbsent(
+        productId,
+        () => CartAttribute(
+            id: DateTime.now().toString(),
+            title: title,
+            quantity: 1,
+            price: price,
+            imageUrl: imageUrl),
+      );
     }
+    notifyListeners();
   }
 }

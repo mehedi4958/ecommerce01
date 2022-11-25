@@ -1,4 +1,5 @@
 import 'package:e_commerce_01/firebase_options.dart';
+import 'package:e_commerce_01/provider/cart_provider.dart';
 import 'package:e_commerce_01/provider/products.dart';
 import 'package:e_commerce_01/views/screens/bottom_navbar.dart';
 import 'package:e_commerce_01/views/screens/detail/detail_screen.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Products()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
