@@ -124,11 +124,12 @@ class CartItem extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.add_box_rounded,
-                          size: 25,
-                        ))
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.add_box_rounded,
+                        size: 25,
+                      ),
+                    ),
                   ],
                 ),
               ],
