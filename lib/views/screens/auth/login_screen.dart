@@ -79,16 +79,16 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: BoxDecoration(
                 color: buttonColor,
               ),
-              child: Center(
-                child: InkWell(
-                  onTap: loginUser,
-                  child: _isLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                        )
-                      : Text(
+              child: InkWell(
+                onTap: loginUser,
+                child: _isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    : Center(
+                        child: Text(
                           'Login',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: buttonTextColor,
                           ),
                         ),
-                ),
+                      ),
               ),
             ),
             const SizedBox(height: 20),

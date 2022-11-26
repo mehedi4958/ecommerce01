@@ -147,30 +147,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: BoxDecoration(
                   color: buttonColor,
                 ),
-                child: Center(
-                  child: InkWell(
-                    onTap: () async {
-                      await signUpUser();
-                      _fullNameController.clear();
-                      _userNameController.clear();
-                      _emailController.clear();
-                      _passwordController.clear();
-                      _image!.clear();
-                    },
-                    child: _isLoading
-                        ? const Center(
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                            ),
-                          )
-                        : Text(
+                child: InkWell(
+                  onTap: () async {
+                    await signUpUser();
+                    _fullNameController.clear();
+                    _userNameController.clear();
+                    _emailController.clear();
+                    _passwordController.clear();
+                    _image!.clear();
+                  },
+                  child: _isLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        )
+                      : Center(
+                          child: Text(
                             'Sign Up',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                                 color: buttonTextColor),
                           ),
-                  ),
+                        ),
                 ),
               ),
               const SizedBox(height: 20),
