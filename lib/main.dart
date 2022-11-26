@@ -5,6 +5,7 @@ import 'package:e_commerce_01/views/screens/auth/login_screen.dart';
 import 'package:e_commerce_01/views/screens/bottom_navbar.dart';
 import 'package:e_commerce_01/views/screens/detail/detail_screen.dart';
 import 'package:e_commerce_01/views/screens/feeds_category.dart';
+import 'package:e_commerce_01/views/screens/order_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
         routes: {
           DetailScreen.id: (context) => const DetailScreen(),
           FeedsCategory.id: (context) => const FeedsCategory(),
+          OrderScreen.id: (context) => const OrderScreen(),
         },
       ),
     );
