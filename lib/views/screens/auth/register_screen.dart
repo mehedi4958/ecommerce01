@@ -17,6 +17,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   final AuthController _authController = AuthController();
@@ -39,6 +40,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _fullNameController.text,
       _userNameController.text,
       _emailController.text,
+      _phoneNumberController.text,
       _passwordController.text,
       _image,
     );
@@ -117,10 +119,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 15),
               TextField(
+                keyboardType: TextInputType.emailAddress,
                 controller: _emailController,
                 decoration: const InputDecoration(
                   filled: true,
                   hintText: 'Enter your email',
+                  border: OutlineInputBorder(borderSide: BorderSide.none),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              TextField(
+                keyboardType: TextInputType.phone,
+                controller: _phoneNumberController,
+                decoration: const InputDecoration(
+                  filled: true,
+                  hintText: 'Enter your phone number',
                   border: OutlineInputBorder(borderSide: BorderSide.none),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black),
@@ -153,6 +169,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     _fullNameController.clear();
                     _userNameController.clear();
                     _emailController.clear();
+                    _phoneNumberController.clear();
                     _passwordController.clear();
                     _image!.clear();
                   },

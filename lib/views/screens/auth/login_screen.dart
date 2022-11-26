@@ -49,6 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
+              keyboardType: TextInputType.emailAddress,
               controller: _emailController,
               decoration: const InputDecoration(
                 filled: true,

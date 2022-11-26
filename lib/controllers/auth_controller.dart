@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:e_commerce_01/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AuthController {
@@ -38,6 +37,7 @@ class AuthController {
     String fullName,
     String username,
     String email,
+    String phoneNumber,
     String password,
     Uint8List? image,
   ) async {
@@ -46,6 +46,7 @@ class AuthController {
       if (fullName.isNotEmpty &&
           username.isNotEmpty &&
           email.isNotEmpty &&
+          phoneNumber.isNotEmpty &&
           password.isNotEmpty &&
           image != null) {
         UserCredential userCredential =
@@ -60,6 +61,7 @@ class AuthController {
           'fullName': fullName,
           'username': username,
           'email': email,
+          'phoneNumber': phoneNumber,
           'image': profileImageUrl,
         });
         result = 'success';
