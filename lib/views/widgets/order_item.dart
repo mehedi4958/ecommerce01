@@ -1,11 +1,14 @@
+import 'package:e_commerce_01/models/order_attribute.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class OrderItem extends StatelessWidget {
   const OrderItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final orderList = Provider.of<OrderAttribute>(context);
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -19,9 +22,9 @@ class OrderItem extends StatelessWidget {
           children: [
             Container(
               width: 130,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/arrival1.png'),
+                  image: NetworkImage(orderList.imageUrl),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -36,9 +39,9 @@ class OrderItem extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Gucci',
-                          style: TextStyle(
+                        Text(
+                          orderList.title,
+                          style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                         IconButton(
@@ -52,18 +55,18 @@ class OrderItem extends StatelessWidget {
                     ),
                   ),
                   Row(
-                    children: const [
-                      Text(
+                    children: [
+                      const Text(
                         'Price',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Text(
-                        '100',
-                        style: TextStyle(
+                        '${orderList.price}',
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),

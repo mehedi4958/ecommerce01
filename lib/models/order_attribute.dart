@@ -5,7 +5,7 @@ class OrderAttribute with ChangeNotifier {
   OrderAttribute({
     required this.orderId,
     required this.userId,
-    required this.productId,
+    this.productId,
     required this.title,
     required this.price,
     required this.imageUrl,
@@ -15,7 +15,7 @@ class OrderAttribute with ChangeNotifier {
 
   final String orderId;
   final String userId;
-  final String productId;
+  final String? productId;
   final String title;
   final double price;
   final String imageUrl;

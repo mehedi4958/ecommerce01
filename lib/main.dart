@@ -1,5 +1,6 @@
 import 'package:e_commerce_01/firebase_options.dart';
 import 'package:e_commerce_01/provider/cart_provider.dart';
+import 'package:e_commerce_01/provider/order_provider.dart';
 import 'package:e_commerce_01/provider/products.dart';
 import 'package:e_commerce_01/views/screens/auth/login_screen.dart';
 import 'package:e_commerce_01/views/screens/bottom_navbar.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => Products()),
         ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => Orders()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

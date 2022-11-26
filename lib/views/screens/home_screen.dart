@@ -1,3 +1,4 @@
+import 'package:e_commerce_01/provider/order_provider.dart';
 import 'package:e_commerce_01/provider/products.dart';
 import 'package:e_commerce_01/views/widgets/all_products.dart';
 import 'package:e_commerce_01/views/widgets/category.dart';
@@ -15,6 +16,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final productProvider = Provider.of<Products>(context);
     productProvider.fetchProducts();
+    final orderProvider = Provider.of<Orders>(context);
+    orderProvider.fetchOrders();
 
     return Scaffold(
       body: SingleChildScrollView(

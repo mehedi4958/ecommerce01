@@ -6,6 +6,7 @@ import 'package:e_commerce_01/views/widgets/cart_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
+    var uuid = const Uuid();
 
     return cartProvider.getCartItems.isNotEmpty
         ? Scaffold(
@@ -65,11 +67,12 @@ class CartScreen extends StatelessWidget {
                       onPressed: () async {
                         cartProvider.getCartItems
                             .forEach((key, orderValue) async {
+                          final orderId = uuid.v4();
                           await fireStore
                               .collection('orders')
-                              .doc('11111')
+                              .doc(orderId)
                               .set({
-                            'orderId': '11111',
+                            'orderId': orderId,
                             'userId': firebaseAuth.currentUser!.uid,
                             'title': orderValue.title,
                             'price': orderValue.price,
