@@ -1,37 +1,34 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce_01/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../models/products.dart';
 
 class Products with ChangeNotifier {
-  final List<Product> _products = [
-    Product(
-      id: 'Gucci Over Sized',
-      title: 'Gucci Over Sized',
-      description: 'Gucci is one of the best selling clothes in the world',
-      price: 9.99,
-      imageUrl: 'assets/images/arrival1.png',
-      productCategoryName: 'clothes',
-      quantity: 2,
-    ),
-    Product(
-      id: 'T-Shirt Over Sized',
-      title: 'T-Shirt Over Sized',
-      description: 'T-Shirt is one of the best selling clothes in the world',
-      price: 19.99,
-      imageUrl: 'assets/images/arrival2.png',
-      productCategoryName: 'clothes',
-      quantity: 2,
-    ),
-    Product(
-      id: 'i-phone',
-      title: 'i-phone',
-      description: 'i-phone is one of the best selling phones in the world',
-      price: 999.99,
-      imageUrl: 'assets/images/CatPhones.png',
-      productCategoryName: 'phones',
-      quantity: 2,
-    ),
-  ];
+  List<Product> _products = [];
+
+  Future<void> fetchProducts() async {
+    await fireStore
+        .collection('products')
+        .get()
+        .then((QuerySnapshot productSnapshot) {
+      _products = [];
+      for (var element in productSnapshot.docs) {
+        _products.insert(
+          0,
+          Product(
+            id: element.get('id'),
+            title: element.get('title'),
+            description: element.get('description'),
+            price: element.get('price'),
+            imageUrl: element.get('imageUrl'),
+            productCategoryName: element.get('productCategoryName'),
+            quantity: int.parse(element.get('quantity')),
+          ),
+        );
+      }
+    });
+  }
 
   List<Product> get products {
     return _products;

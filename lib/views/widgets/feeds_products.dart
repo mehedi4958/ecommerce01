@@ -38,7 +38,7 @@ class _FeedsProductsState extends State<FeedsProducts> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
-                        image: AssetImage(
+                        image: NetworkImage(
                           products.imageUrl,
                         ),
                         fit: BoxFit.cover,
