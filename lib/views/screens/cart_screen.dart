@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce_01/constants.dart';
 import 'package:e_commerce_01/provider/cart_provider.dart';
 import 'package:e_commerce_01/views/widgets/cart_empty.dart';
 import 'package:e_commerce_01/views/widgets/cart_item.dart';
@@ -60,7 +62,23 @@ class CartScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () async {
+                        cartProvider.getCartItems
+                            .forEach((key, orderValue) async {
+                          await fireStore
+                              .collection('orders')
+                              .doc('11111')
+                              .set({
+                            'orderId': '11111',
+                            'userId': firebaseAuth.currentUser!.uid,
+                            'title': orderValue.title,
+                            'price': orderValue.price,
+                            'imageUrl': orderValue.imageUrl,
+                            'quantity': orderValue.quantity,
+                            'orderDate': Timestamp.now(),
+                          });
+                        });
+                      },
                       child: const Text(
                         'Checkout',
                         style: TextStyle(
