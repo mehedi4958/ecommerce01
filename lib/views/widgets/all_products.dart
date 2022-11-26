@@ -15,24 +15,25 @@ class AllProducts extends StatelessWidget {
     final productsProvider = Provider.of<Products>(context);
     List<Product> productList = productsProvider.products;
 
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            height: 280,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => ProductItem(
+    return Column(
+      children: [
+        SizedBox(
+          height: 280,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) => ChangeNotifierProvider.value(
+              value: productList[index],
+              child: ProductItem(
                 index: index,
               ),
-              separatorBuilder: (_, index) => const SizedBox(
-                width: 5,
-              ),
-              itemCount: productList.length,
             ),
+            separatorBuilder: (_, index) => const SizedBox(
+              width: 5,
+            ),
+            itemCount: productList.length,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

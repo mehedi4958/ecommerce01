@@ -1,6 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:e_commerce_01/models/products.dart';
-import 'package:e_commerce_01/provider/products.dart';
+import 'package:e_commerce_01/views/screens/detail/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,13 +11,15 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productsProvider = Provider.of<Products>(context);
-    List<Product> productList = productsProvider.products;
+    final product = Provider.of<Product>(context);
 
     return Container(
       margin: const EdgeInsets.all(10),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context)
+              .pushNamed(DetailScreen.id, arguments: product.id);
+        },
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
@@ -34,7 +36,7 @@ class ProductItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
                         image: AssetImage(
-                          productList[index].imageUrl.toString(),
+                          product.imageUrl,
                         ),
                         fit: BoxFit.cover,
                       ),
@@ -59,14 +61,14 @@ class ProductItem extends StatelessWidget {
                 ],
               ),
               Text(
-                productList[index].title,
+                product.title,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   height: 1.6,
                 ),
               ),
               Text(
-                '\$${productList[index].price.toString()}',
+                '\$${product.price.toString()}',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   height: 1.6,
