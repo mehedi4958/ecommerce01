@@ -22,6 +22,15 @@ class Products with ChangeNotifier {
       productCategoryName: 'clothes',
       quantity: 2,
     ),
+    Product(
+      id: 'i-phone',
+      title: 'i-phone',
+      description: 'i-phone is one of the best selling phones in the world',
+      price: 999.99,
+      imageUrl: 'assets/images/CatPhones.png',
+      productCategoryName: 'phones',
+      quantity: 2,
+    ),
   ];
 
   List<Product> get products {

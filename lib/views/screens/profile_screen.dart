@@ -1,3 +1,4 @@
+import 'package:e_commerce_01/constants.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -5,9 +6,20 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Profile'),
+        child: ElevatedButton(
+          onPressed: () async {
+            await firebaseAuth.signOut();
+          },
+          child: const Text(
+            'Sign out',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
     );
   }
