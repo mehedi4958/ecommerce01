@@ -1,3 +1,4 @@
+import 'package:e_commerce_01/constants.dart';
 import 'package:e_commerce_01/models/order_attribute.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,10 +46,15 @@ class OrderItem extends StatelessWidget {
                               fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            fireStore
+                                .collection('orders')
+                                .doc(orderList.orderId)
+                                .delete();
+                          },
                           icon: const Icon(
                             CupertinoIcons.delete_left,
-                            color: Colors.red,
+                            color: Colors.blue,
                           ),
                         ),
                       ],

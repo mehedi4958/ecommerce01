@@ -28,6 +28,7 @@ class Orders with ChangeNotifier {
         );
       }
     });
+    notifyListeners();
   }
 
   List<OrderAttribute> get orders {
