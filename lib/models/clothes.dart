@@ -1,5 +1,9 @@
 class Clothes {
-  Clothes(this.productName, this.price, this.imageUrl);
+  Clothes(
+    this.productName,
+    this.price,
+    this.imageUrl,
+  );
 
   String? productName;
   String? price;
