@@ -3,6 +3,7 @@ import 'package:e_commerce_01/provider/cart_provider.dart';
 import 'package:e_commerce_01/provider/products.dart';
 import 'package:e_commerce_01/views/screens/bottom_navbar.dart';
 import 'package:e_commerce_01/views/screens/detail/detail_screen.dart';
+import 'package:e_commerce_01/views/screens/feeds_category.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         home: const BottomNavBar(),
         routes: {
           DetailScreen.id: (context) => const DetailScreen(),
+          FeedsCategory.id: (context) => const FeedsCategory(),
         },
       ),
     );
