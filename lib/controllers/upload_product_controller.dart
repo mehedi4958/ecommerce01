@@ -6,10 +6,9 @@ import 'package:uuid/uuid.dart';
 
 class UploadProductController {
   _uploadImageToStorage(File? image) async {
-    Reference reference = firebaseStorage
-        .ref()
-        .child('product')
-        .child(firebaseAuth.currentUser!.uid);
+    final productId = uuid.v4();
+    Reference reference =
+        firebaseStorage.ref().child('product').child(productId);
     UploadTask uploadTask = reference.putFile(image!);
     TaskSnapshot taskSnapshot = await uploadTask;
     String downloadedUrl = await taskSnapshot.ref.getDownloadURL();
