@@ -20,10 +20,10 @@ class Products with ChangeNotifier {
             id: element.get('id'),
             title: element.get('title'),
             description: element.get('description'),
-            price: element.get('price'),
+            price: 40.0,
             imageUrl: element.get('imageUrl'),
             productCategoryName: element.get('productCategoryName'),
-            quantity: int.parse(element.get('quantity')),
+            quantity: 50,
           ),
         );
       }

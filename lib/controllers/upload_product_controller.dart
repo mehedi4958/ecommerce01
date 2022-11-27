@@ -20,10 +20,10 @@ class UploadProductController {
   Future<String> uploadProduct(
       String id,
       String title,
-      String price,
+      var price,
       String productCategoryName,
       String description,
-      String quantity,
+      var quantity,
       File? imageUrl) async {
     String result = 'some error occurred';
     try {

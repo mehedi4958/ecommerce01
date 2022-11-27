@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:e_commerce_01/controllers/upload_product_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +21,8 @@ class _UploadProductFormState extends State<UploadProductForm> {
   final TextEditingController _categoryController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
+  final UploadProductController _uploadProductController =
+      UploadProductController();
   File? _pickedImage;
 
   void _pickImageCamera() async {
@@ -55,6 +58,17 @@ class _UploadProductFormState extends State<UploadProductForm> {
     });
   }
 
+  uploadProduct() async {
+    await _uploadProductController.uploadProduct(
+        _productTitleController.text,
+        _productTitleController.text,
+        _priceController.text,
+        _categoryController.text,
+        _descriptionController.text,
+        _quantityController.text,
+        _pickedImage);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,9 +87,7 @@ class _UploadProductFormState extends State<UploadProductForm> {
         child: Material(
           color: Theme.of(context).backgroundColor,
           child: InkWell(
-            onTap: () {
-              print('uploaded');
-            },
+            onTap: uploadProduct,
             splashColor: Colors.grey,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
