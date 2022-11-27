@@ -152,7 +152,9 @@ class _UploadProductFormState extends State<UploadProductForm> {
                             child: TextField(
                               controller: _priceController,
                               key: const ValueKey('Price \$'),
-                              keyboardType: TextInputType.number,
+                              keyboardType:
+                                  const TextInputType.numberWithOptions(
+                                      decimal: true, signed: false),
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(
                                     RegExp(r'[0-9]')),

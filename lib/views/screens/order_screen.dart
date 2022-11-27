@@ -22,12 +22,17 @@ class OrderScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: orderProvider.orders.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ChangeNotifierProvider.value(
-            value: orderProvider.orders[index],
-            child: const OrderItem(),
+      body: FutureBuilder(
+        future: orderProvider.fetchOrders(),
+        builder: (context, snapshot) {
+          return ListView.builder(
+            itemCount: orderProvider.orders.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ChangeNotifierProvider.value(
+                value: orderProvider.orders[index],
+                child: const OrderItem(),
+              );
+            },
           );
         },
       ),
