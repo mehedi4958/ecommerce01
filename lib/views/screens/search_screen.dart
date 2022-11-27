@@ -56,19 +56,29 @@ class _SearchScreenState extends State<SearchScreen> {
           },
         ),
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 240 / 320,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-        children: List.generate(
-          _searchedList.length,
-          (index) => ChangeNotifierProvider.value(
-            value: _searchedList[index],
-            child: const FeedsProducts(),
-          ),
-        ),
-      ),
+      body: _searchedList.isEmpty
+          ? const Center(
+              child: Text(
+                'Search Products',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          : GridView.count(
+              crossAxisCount: 2,
+              childAspectRatio: 240 / 320,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+              children: List.generate(
+                _searchedList.length,
+                (index) => ChangeNotifierProvider.value(
+                  value: _searchedList[index],
+                  child: const FeedsProducts(),
+                ),
+              ),
+            ),
     );
   }
 }
