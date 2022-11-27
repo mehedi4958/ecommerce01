@@ -34,7 +34,7 @@ List pages = [
   const FeedsScreen(),
   const SearchScreen(),
   const CartScreen(),
-  const UploadScreen(),
+  const UploadProductForm(),
   const ProfileScreen(),
 ];
 

@@ -12,6 +12,16 @@ class OrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final orderProvider = Provider.of<Orders>(context);
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.black,
+        title: const Text(
+          'My Orders',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: ListView.builder(
         itemCount: orderProvider.orders.length,
         itemBuilder: (BuildContext context, int index) {

@@ -14,6 +14,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   ScrollController? _scrollController;
   var top = 0.0;
+  bool isLoading = true;
 
   String? _name;
   String? _email;
@@ -32,6 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _imageUrl = userData.get('image');
       _phoneNumber = userData.get('phoneNumber');
     });
+    isLoading = false;
   }
 
   @override
@@ -58,71 +60,74 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 flexibleSpace: LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
                     top = constraints.biggest.height;
-                    return Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            colors: [
-                              Theme.of(context).colorScheme.secondary,
-                              Theme.of(context).primaryColor,
-                            ],
-                            begin: const FractionalOffset(0.0, 0.0),
-                            end: const FractionalOffset(1.0, 0.0),
-                            stops: const [0.0, 1.0],
-                            tileMode: TileMode.clamp),
-                      ),
-                      child: FlexibleSpaceBar(
-                        collapseMode: CollapseMode.parallax,
-                        centerTitle: true,
-                        title: Row(
-                          //  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            AnimatedOpacity(
-                              duration: const Duration(milliseconds: 300),
-                              opacity: top <= 110.0 ? 1.0 : 0,
-                              child: Row(
+                    return isLoading
+                        ? const Center(child: CircularProgressIndicator())
+                        : Container(
+                            decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: [
+                                    Colors.blue,
+                                    //Theme.of(context).colorScheme.secondary,
+                                    //Theme.of(context).primaryColor,
+                                    Colors.black,
+                                  ],
+                                  begin: FractionalOffset(0.0, 0.0),
+                                  end: FractionalOffset(1.0, 0.0),
+                                  stops: [0.0, 1.0],
+                                  tileMode: TileMode.clamp),
+                            ),
+                            child: FlexibleSpaceBar(
+                              collapseMode: CollapseMode.parallax,
+                              centerTitle: true,
+                              title: Row(
+                                //  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const SizedBox(
-                                    width: 12,
-                                  ),
-                                  Container(
-                                    height: kToolbarHeight / 1.8,
-                                    width: kToolbarHeight / 1.8,
-                                    decoration: BoxDecoration(
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Colors.white,
-                                          blurRadius: 1.0,
+                                  AnimatedOpacity(
+                                    duration: const Duration(milliseconds: 300),
+                                    opacity: top <= 110.0 ? 1.0 : 0,
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 12,
+                                        ),
+                                        Container(
+                                          height: kToolbarHeight / 1.8,
+                                          width: kToolbarHeight / 1.8,
+                                          decoration: BoxDecoration(
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.white,
+                                                blurRadius: 1.0,
+                                              ),
+                                            ],
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              fit: BoxFit.fill,
+                                              image: NetworkImage('$_imageUrl'),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 12,
+                                        ),
+                                        const Text(
+                                          'Guest',
+                                          style: TextStyle(
+                                              fontSize: 20.0,
+                                              color: Colors.white),
                                         ),
                                       ],
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: NetworkImage('$_imageUrl'
-                                            // 'https://cdn1.vectorstock.com/i/thumb-large/62/60/default-avatar-photo-placeholder-profile-image-vector-21666260.jpg'
-                                            ),
-                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 12,
-                                  ),
-                                  const Text(
-                                    'Guest',
-                                    style: TextStyle(
-                                        fontSize: 20.0, color: Colors.white),
                                   ),
                                 ],
                               ),
+                              background: Image(
+                                image: NetworkImage('$_imageUrl'),
+                                fit: BoxFit.fill,
+                              ),
                             ),
-                          ],
-                        ),
-                        background: Image(
-                          image: NetworkImage('$_imageUrl'),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    );
+                          );
                   },
                 ),
               ),
